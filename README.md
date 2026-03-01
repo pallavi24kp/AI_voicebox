@@ -191,12 +191,17 @@ fallback.wav
 
 ###  Design Principles Followed
 
-✔ Modular architecture
-✔ No scattered hard-coded responses
-✔ Centralized configuration
-✔ Optimized inference
-✔ Clean readable code
-✔ Proper memory management
+ Modular architecture
+
+ No scattered hard-coded responses
+
+ Centralized configuration
+
+ Optimized inference
+
+ Clean readable code
+
+ Proper memory management
 
 ### Future Improvements
 
