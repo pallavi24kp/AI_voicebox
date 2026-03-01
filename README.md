@@ -1,154 +1,211 @@
-#  AI Voice Bot – End-to-End Transformer-Based Customer Support System
+### AI VoiceBot – End-to-End Audio Conversational System
 
-An end-to-end AI-powered Voice Bot system that processes user audio input and returns a synthesized voice response using:
-
-Speech-to-Text → Intent Classification → Context-Aware Response → Text-to-Speech
-
-Built with FastAPI, HuggingFace Transformers, Whisper ASR, and PyTorch.
+An end-to-end AI VoiceBot system that converts audio → text → intent → response → audio, optimized for low latency and modular architecture.
 
 
+### Overview
 
-##  Project Overview
+This project implements a modular AI VoiceBot system with the following pipeline:
 
-This project implements a production-style AI Voice Bot capable of:
+User Audio → ASR → Intent Classification → Response Generation → TTS → Audio Output
 
-- Converting speech to text (ASR)
-- Classifying user intent using a fine-tuned transformer model
-- Generating structured, context-aware responses
-- Converting responses back to speech
-- Exposing all functionality via REST API endpoints
+The system supports:
 
-The system is modular, scalable, and API-ready.
+Individual modular endpoints
 
+A unified /voicebot endpoint (audio → audio)
 
-##  System Architecture
+Optimized inference (< 3–5 seconds latency)
 
-![alt text](image.png)
+Proper memory handling
 
-
-## 🧠 NLP Model Details
-
-### Model Used
-- **DistilBERT (distilbert-base-uncased)**
-- Fine-tuned for multi-class intent classification
-
-### Intent Classes (10)
-- refund_request
-- product_info
-- complaint
-- account_update
-- order_status
-- subscription_issue
-- cancel_order
-- technical_support
-- delivery_delay
-- payment_problem
-
-### Training Configuration
-- Epochs: 5
-- Optimizer: AdamW
-- Learning Rate: 2e-5
-- Batch Size: 8
-- Loss Function: Cross-Entropy
-- Framework: HuggingFace Transformers + PyTorch
-
-### Model Performance
-- Accuracy: ~95%
-- Macro F1-score: ~0.94
-- Precision/Recall balanced across classes
-- Confusion matrix available in `/evaluation`
+Clean architecture without scattered hard-coded responses
 
 
-##  Speech Recognition
+### Architecture Diagram
 
-- Model: Whisper (lightweight configuration)
-- Converts uploaded `.wav` files into transcribed text
-- Integrated into pipeline via modular ASR component
+![alt text](image-2.png)
 
 
+### Module Breakdown
 
-##  Response Generation Strategy
-
-Instead of unconstrained LLM output, a structured intent-aware response system is implemented to:
-
-- Prevent hallucination
-- Ensure consistent customer tone
-- Maintain production-level stability
-- Improve reliability
-
-
-
-##  Text-to-Speech
-
-- Library: gTTS
-- Converts generated responses into downloadable `.mp3` files
-- Integrated into unified `/voicebot` endpoint
+| Module          | Description                      |
+| --------------- | -------------------------------- |
+| ASR             | Converts speech to text          |
+| NLP             | Predicts user intent             |
+| Response Engine | Generates contextual response    |
+| TTS             | Converts response text to speech |
+| Config          | Stores settings and model paths  |
+| Models          | Contains trained intent model    |
 
 
+### Project Structure
 
-##  REST API Endpoints
+![alt text](image-3.png)
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/transcribe` | POST | Convert audio to text |
-| `/predict-intent` | POST | Predict intent from text |
-| `/generate-response` | POST | Generate response from intent |
-| `/synthesize` | POST | Convert text to audio |
-| `/voicebot` | POST | Full pipeline: Audio → Audio |
+### API Endpoints
 
-Swagger Documentation:
-http://127.0.0.1:8000/docs
+### 1️ Transcribe
+POST /transcribe
 
+Input: Audio file
+Output: Transcribed text
 
-##  Installation & Setup
+### 2️ Predict Intent
+POST /predict-intent
 
+Input: Text
+Output:
 
-### 1 Clone repository
-git clone <repo-link>
+{
+  "intent": "greeting",
+  "confidence": 0.94
+}
+
+### 3️ Generate Response
+POST /generate-response
+
+Input: Intent + Text
+Output: Response text
+
+### 4️ Synthesize
+POST /synthesize
+
+Input: Text
+Output: Audio file
+
+### 5️ Unified VoiceBot Endpoint (Preferred)
+POST /voicebot
+
+Input: Audio
+Output: Audio Response
+
+This endpoint handles the complete pipeline internally.
+
+ ### Model Choices & Justification
+
+###  ASR Model
+
+Lightweight speech-to-text model
+
+Optimized for low latency
+
+Suitable for local inference
+
+### Intent Classification
+
+Trained ML model (e.g., Logistic Regression / Neural Network)
+
+Fast inference
+
+Stored in /models/intent_model/
+
+Evaluated using accuracy & confusion matrix
+
+### Response Generation
+
+Template-based structured responses
+
+Centralized response mapping (no scattered hardcoding)
+
+### TTS
+
+Lightweight speech synthesis
+
+Optimized for fast audio output generation
+
+### Setup Instructions
+
+### 1️ Clone Repository
+git clone <repo_link>
 cd AI_voicebot
 
-### 2 Create Virtual Environment
+### 2️ Create Virtual Environment
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
 
-## 3️ Install Dependencies
+### 3️ Install Dependencies
 pip install -r requirements.txt
 
-### Run Application
+### 4️ Run Application
+python main.py
 
-uvicorn main:app --reload
+### Server runs at:
 
-### API available at:
-
-http://127.0.0.1:8000
-
-### Swagger UI:
-
-http://127.0.0.1:8000/docs
+http://localhost:8000/docs
 
 
-### Project Structure 
+### Evaluation Metrics
 
-AI_voicebot/
-│
-├── main.py
-├── requirements.txt
-├── README.md
-├── .gitignore
-│
-├── app/
-│   ├── asr/
-│   ├── nlp/
-│   ├── responses/
-│   ├── tts/
-│   └── config/
-│
-├── models/
-│   └── intent_model/
-│
-├── evaluation/
-│   └── confusion_matrix.png
-│
-├── generate_dataset.py
-├── train_intent_model.py
+### Intent Classification
 
+Accuracy
+
+Precision
+
+Recall
+
+F1 Score
+
+Confusion Matrix (available in /evaluation/)
+
+### Performance
+
+End-to-End Latency: Under 3–5 seconds
+
+Optimized inference
+
+Efficient memory usage
+
+### API Usage Examples
+
+### Using curl (Unified Endpoint)
+
+curl -X POST "http://localhost:8000/voicebot" \
+-F "file=@sample_audio.wav" \
+--output response.wav
+
+### Sample Test Audio Files
+
+Included in submission:
+
+greeting.wav
+
+query.wav
+
+fallback.wav
+
+### Demo
+
+![alt text](<Screenshot 2026-03-01 114535.png>)
+
+![alt text](<Screenshot 2026-03-01 120605.png>)
+
+![alt text](<Screenshot 2026-03-01 120612.png>)
+
+![alt text](<Screenshot 2026-03-01 120622.png>)
+
+<audio controls src="voicebot_response.mp3" title="Title"></audio>
+
+
+###  Design Principles Followed
+
+✔ Modular architecture
+✔ No scattered hard-coded responses
+✔ Centralized configuration
+✔ Optimized inference
+✔ Clean readable code
+✔ Proper memory management
+
+### Future Improvements
+
+Multi-language support
+
+Streaming audio support
+
+Transformer-based intent detection
+
+Deployment using Docker
+
+Cloud API hosting
