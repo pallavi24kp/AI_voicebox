@@ -1,0 +1,401 @@
+text,intent
+Refund my payment,refund_request
+Refund my payment,refund_request
+Explain the product features,product_info
+Poor quality product,complaint
+Update account settings,account_update
+Is my order on the way?,order_status
+This service is terrible,complaint
+Update personal information,account_update
+Edit my username,account_update
+I want a refund,refund_request
+Cancel my subscription,subscription_issue
+Stop my order immediately,cancel_order
+Having trouble accessing my account,technical_support
+Website crashed,technical_support
+Package has not arrived yet,delivery_delay
+There is a billing issue,payment_problem
+Login problem,technical_support
+Payment failed,payment_problem
+Payment not successful,payment_problem
+Cancel my recent purchase,cancel_order
+Why is my order late?,delivery_delay
+Technical glitch issue,technical_support
+Process my refund,refund_request
+Money deducted but order not placed,payment_problem
+Describe this item,product_info
+I want to know where my order is,order_status
+Is my order on the way?,order_status
+Late delivery issue,delivery_delay
+Correct my account details,account_update
+This service is terrible,complaint
+Double payment problem,payment_problem
+Issue my refund,refund_request
+Explain the product features,product_info
+Correct my account details,account_update
+Bad customer experience,complaint
+I need a refund for this item,refund_request
+What is the shipping update?,order_status
+Having trouble accessing my account,technical_support
+Do you have this in stock?,product_info
+Give me product details,product_info
+Can you stop my shipment?,cancel_order
+Money deducted but order not placed,payment_problem
+There is a technical issue,technical_support
+Bad customer experience,complaint
+Where is my order?,order_status
+Give me product details,product_info
+Login problem,technical_support
+What is the price?,product_info
+What is the price?,product_info
+Give me product details,product_info
+Stop my order immediately,cancel_order
+Update my contact info,account_update
+Bad customer experience,complaint
+This service is terrible,complaint
+Remove my order,cancel_order
+Abort my purchase,cancel_order
+Subscription is not working,subscription_issue
+Can I get a refund?,refund_request
+Update my subscription plan,subscription_issue
+Return my money please,refund_request
+Cancel my subscription,subscription_issue
+Update my email address,account_update
+Check the delivery status,order_status
+Very disappointed with your service,complaint
+Give me product details,product_info
+Give me tracking details,order_status
+I have a complaint,complaint
+Cancel my subscription,subscription_issue
+Describe this item,product_info
+Update my contact info,account_update
+Update my subscription plan,subscription_issue
+Modify my profile,account_update
+Transaction did not go through,payment_problem
+This service is terrible,complaint
+Transaction did not go through,payment_problem
+Bug in the application,technical_support
+Return my money please,refund_request
+My package is overdue,delivery_delay
+Can you stop my shipment?,cancel_order
+Late delivery issue,delivery_delay
+What is the price?,product_info
+Money deducted but order not placed,payment_problem
+Poor quality product,complaint
+I have a complaint,complaint
+Cancel my subscription,subscription_issue
+Poor quality product,complaint
+My package is overdue,delivery_delay
+Stop my order immediately,cancel_order
+Where is my order?,order_status
+Double payment problem,payment_problem
+Refund my payment,refund_request
+Upgrade my plan,subscription_issue
+Change my password,account_update
+My package is overdue,delivery_delay
+I cannot log in,technical_support
+Bad customer experience,complaint
+I changed my mind cancel it,cancel_order
+Pause my subscription,subscription_issue
+I need to cancel an item,cancel_order
+Delivery hasn’t come,delivery_delay
+System error message,technical_support
+Stop auto renewal,subscription_issue
+Card payment issue,payment_problem
+Give me product details,product_info
+Can you tell me my order status?,order_status
+My delivery is delayed,delivery_delay
+I want to cancel my order,cancel_order
+There is a technical issue,technical_support
+Update my contact info,account_update
+Very disappointed with your service,complaint
+Bug in the application,technical_support
+Order is stuck in transit,delivery_delay
+I need to cancel an item,cancel_order
+System error message,technical_support
+Late delivery issue,delivery_delay
+Please cancel my order,cancel_order
+Expected date passed,delivery_delay
+My package is overdue,delivery_delay
+I want a refund,refund_request
+Process my refund,refund_request
+Tell me about this product,product_info
+Shipment delay problem,delivery_delay
+Modify my membership,subscription_issue
+Product specifications please,product_info
+I changed my mind cancel it,cancel_order
+Abort my purchase,cancel_order
+Product specifications please,product_info
+Shipment delay problem,delivery_delay
+I cannot log in,technical_support
+I have a complaint,complaint
+Give me product details,product_info
+Update my email address,account_update
+Double payment problem,payment_problem
+Why is my order late?,delivery_delay
+Update my contact info,account_update
+Correct my account details,account_update
+Describe this item,product_info
+Give me product details,product_info
+Poor quality product,complaint
+Track my order please,order_status
+Stop auto renewal,subscription_issue
+Change my subscription,subscription_issue
+What are the features?,product_info
+App is not working,technical_support
+I cannot log in,technical_support
+Having trouble accessing my account,technical_support
+Stop auto renewal,subscription_issue
+Is my order on the way?,order_status
+I want to cancel my order,cancel_order
+I am unhappy with the product,complaint
+Delivery is taking too long,delivery_delay
+Update my contact info,account_update
+Update my subscription plan,subscription_issue
+System error message,technical_support
+I want to return this product,refund_request
+There is a billing issue,payment_problem
+Late delivery issue,delivery_delay
+Why is my order late?,delivery_delay
+App is not working,technical_support
+Delivery hasn’t come,delivery_delay
+Manage my subscription,subscription_issue
+Change my password,account_update
+Update my contact info,account_update
+Expected date passed,delivery_delay
+Upgrade my plan,subscription_issue
+Pause my subscription,subscription_issue
+I cannot log in,technical_support
+Modify my profile,account_update
+Can you tell me my order status?,order_status
+Expected date passed,delivery_delay
+I am frustrated with this service,complaint
+Manage my subscription,subscription_issue
+Bad customer experience,complaint
+Technical glitch issue,technical_support
+Bad customer experience,complaint
+Edit my username,account_update
+App keeps crashing,technical_support
+Technical glitch issue,technical_support
+Poor quality product,complaint
+Change my phone number,account_update
+Order is stuck in transit,delivery_delay
+Stop auto renewal,subscription_issue
+Update personal information,account_update
+Why is my order late?,delivery_delay
+Bug in the application,technical_support
+Can you stop my shipment?,cancel_order
+Give me tracking details,order_status
+I am unhappy with the product,complaint
+Pause my subscription,subscription_issue
+Tell me about this product,product_info
+App is not working,technical_support
+Remove my order,cancel_order
+Remove my order,cancel_order
+Having trouble accessing my account,technical_support
+Expected date passed,delivery_delay
+Modify my profile,account_update
+Remove my order,cancel_order
+My package is overdue,delivery_delay
+Late delivery issue,delivery_delay
+Explain the product features,product_info
+Change my subscription,subscription_issue
+Double payment problem,payment_problem
+Has my package been shipped?,order_status
+Delivery hasn’t come,delivery_delay
+Give me product details,product_info
+Modify my membership,subscription_issue
+Describe this item,product_info
+Update account settings,account_update
+Is this product available?,product_info
+I changed my mind cancel it,cancel_order
+Transaction did not go through,payment_problem
+I want to return this product,refund_request
+Package has not arrived yet,delivery_delay
+Track my order please,order_status
+Track my order please,order_status
+Modify my membership,subscription_issue
+Double payment problem,payment_problem
+Cancel the product I bought,cancel_order
+Subscription is not working,subscription_issue
+Modify my membership,subscription_issue
+Update my email address,account_update
+Manage my subscription,subscription_issue
+Track my order please,order_status
+Having trouble accessing my account,technical_support
+Upgrade my plan,subscription_issue
+Change my subscription,subscription_issue
+I want a refund,refund_request
+Track my order please,order_status
+Is this product available?,product_info
+I am frustrated with this service,complaint
+I need to cancel an item,cancel_order
+I have a complaint,complaint
+Describe this item,product_info
+Can you tell me my order status?,order_status
+Payment not successful,payment_problem
+Double payment problem,payment_problem
+Manage my subscription,subscription_issue
+Downgrade my subscription,subscription_issue
+I am frustrated with this service,complaint
+Not satisfied with service,complaint
+Give me back my payment,refund_request
+Cancel my subscription,subscription_issue
+Card payment issue,payment_problem
+I am frustrated with this service,complaint
+I want a refund,refund_request
+Transaction did not go through,payment_problem
+My package is overdue,delivery_delay
+Process my refund,refund_request
+My delivery is delayed,delivery_delay
+My package is overdue,delivery_delay
+Manage my subscription,subscription_issue
+System error message,technical_support
+Change my password,account_update
+What are the features?,product_info
+App is not working,technical_support
+Update my contact info,account_update
+Give me tracking details,order_status
+When will my package arrive?,order_status
+Card payment issue,payment_problem
+Cancel my recent purchase,cancel_order
+I want a refund,refund_request
+What is the price?,product_info
+Change my subscription,subscription_issue
+Update personal information,account_update
+Card payment issue,payment_problem
+Tell me about this product,product_info
+I want to cancel my order,cancel_order
+Billing error,payment_problem
+Has my package been shipped?,order_status
+Delivery hasn’t come,delivery_delay
+Is my order on the way?,order_status
+Technical glitch issue,technical_support
+How do I get my money back?,refund_request
+I cannot log in,technical_support
+Process my refund,refund_request
+I want to file a complaint,complaint
+I want to know where my order is,order_status
+Change my password,account_update
+Card payment issue,payment_problem
+Change my password,account_update
+Tell me about this product,product_info
+Check the delivery status,order_status
+Give me back my payment,refund_request
+Give me product details,product_info
+I want a refund,refund_request
+Give me tracking details,order_status
+Is my order on the way?,order_status
+Change my subscription,subscription_issue
+Remove my order,cancel_order
+Update my contact info,account_update
+Why was I charged twice?,payment_problem
+I have a complaint,complaint
+Do you have this in stock?,product_info
+Card payment issue,payment_problem
+I changed my mind cancel it,cancel_order
+System error message,technical_support
+Check the delivery status,order_status
+Check the delivery status,order_status
+Payment not successful,payment_problem
+Update my subscription plan,subscription_issue
+Bug in the application,technical_support
+This service is terrible,complaint
+Cancel my recent purchase,cancel_order
+When will my package arrive?,order_status
+Payment failed,payment_problem
+Delivery is taking too long,delivery_delay
+Delivery hasn’t come,delivery_delay
+Why was I charged twice?,payment_problem
+Refund my payment,refund_request
+Payment failed,payment_problem
+Do you have this in stock?,product_info
+Update personal information,account_update
+I am unhappy with the product,complaint
+Do you have this in stock?,product_info
+Where is my order?,order_status
+Can you stop my shipment?,cancel_order
+Correct my account details,account_update
+Check the delivery status,order_status
+More info about the product,product_info
+Double payment problem,payment_problem
+Cancel my recent purchase,cancel_order
+Can you tell me my order status?,order_status
+Poor quality product,complaint
+There is a technical issue,technical_support
+Login problem,technical_support
+Transaction did not go through,payment_problem
+I want a refund,refund_request
+There is a technical issue,technical_support
+Modify my profile,account_update
+Is my order on the way?,order_status
+How do I get my money back?,refund_request
+Correct my account details,account_update
+I am frustrated with this service,complaint
+Check the delivery status,order_status
+Shipment delay problem,delivery_delay
+Why was I charged twice?,payment_problem
+Abort my purchase,cancel_order
+My card was declined,payment_problem
+How do I get my money back?,refund_request
+I need to cancel an item,cancel_order
+Update my subscription plan,subscription_issue
+How do I get my money back?,refund_request
+Update personal information,account_update
+Having trouble accessing my account,technical_support
+This service is terrible,complaint
+Edit my account details,account_update
+Has my package been shipped?,order_status
+Update my contact info,account_update
+I want to return this product,refund_request
+Card payment issue,payment_problem
+Refund my payment,refund_request
+I need a refund for this item,refund_request
+Payment not successful,payment_problem
+Has my package been shipped?,order_status
+Card payment issue,payment_problem
+Give me tracking details,order_status
+Edit my username,account_update
+Process my refund,refund_request
+Transaction did not go through,payment_problem
+How do I get my money back?,refund_request
+What is the shipping update?,order_status
+Stop auto renewal,subscription_issue
+Update my contact info,account_update
+Modify my membership,subscription_issue
+Cancel my recent purchase,cancel_order
+I need a refund for this item,refund_request
+Very disappointed with your service,complaint
+Process my refund,refund_request
+Delivery is taking too long,delivery_delay
+I want to file a complaint,complaint
+Issue my refund,refund_request
+Why is my order late?,delivery_delay
+Is this product available?,product_info
+I am frustrated with this service,complaint
+Refund my payment,refund_request
+Cancel my recent purchase,cancel_order
+I cannot log in,technical_support
+I changed my mind cancel it,cancel_order
+Please cancel my order,cancel_order
+What are the features?,product_info
+App is not working,technical_support
+Do you have this in stock?,product_info
+Stop my order immediately,cancel_order
+Update account settings,account_update
+Is my order on the way?,order_status
+My card was declined,payment_problem
+I want to return this product,refund_request
+Give me back my payment,refund_request
+My card was declined,payment_problem
+I want to return this product,refund_request
+Cancel my subscription,subscription_issue
+App is not working,technical_support
+Cancel the product I bought,cancel_order
+Stop my order immediately,cancel_order
+Why is my order late?,delivery_delay
+This is unacceptable,complaint
+Product specifications please,product_info
+This is unacceptable,complaint
+Remove my order,cancel_order
+Order is stuck in transit,delivery_delay

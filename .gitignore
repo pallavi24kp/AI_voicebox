@@ -1,0 +1,32 @@
+# Virtual Environment
+venv/
+env/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Test / Development Scripts
+test_*.py
+generate_test_audio.py
+-
+# Audio & Data Files
+data/*.wav
+data/*.mp3
+
+# Model Training Checkpoints ONLY
+models/checkpoint-*/
+models/
+
+# HuggingFace Cache
+.cache/
+hf_cache/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
