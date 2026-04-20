@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI VoiceBot — End-to-end intelligent voice assistant powered by Whisper ASR, DistilBERT intent classification, and gTTS speech synthesis." />
+  <title>AI VoiceBot — Intelligent Voice Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>" />
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🎙️</div>
+      <div class="logo-text">
+        <h1>AI VoiceBot</h1>
+        <p>Intelligent Voice Assistant</p>
+      </div>
+    </div>
+
+    <div class="status-pill" id="status-pill">
+      <div class="status-dot"></div>
+      <span id="status-text">Connecting…</span>
+    </div>
+  </header>
+
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- ── Voice Recorder ── -->
+    <section class="card recorder-card" aria-label="Voice recorder">
+      <div class="card-title"><span class="dot"></span>Voice Interaction</div>
+
+      <!-- Pipeline steps -->
+      <div class="pipeline" id="pipeline" aria-label="Processing pipeline">
+        <div class="pipe-step" id="step-asr"   data-step="asr">
+          <div class="step-icon">🎙️</div>
+          <span class="step-label">ASR</span>
+        </div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step" id="step-nlp"   data-step="nlp">
+          <div class="step-icon">🧠</div>
+          <span class="step-label">NLP</span>
+        </div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step" id="step-resp"  data-step="resp">
+          <div class="step-icon">💬</div>
+          <span class="step-label">Response</span>
+        </div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-step" id="step-tts"   data-step="tts">
+          <div class="step-icon">🔊</div>
+          <span class="step-label">TTS</span>
+        </div>
+      </div>
+
+      <!-- Mic button -->
+      <div class="mic-wrapper">
+        <div class="mic-rings" id="mic-rings"></div>
+        <button id="btn-record" aria-label="Start recording" title="Click to record">
+          <!-- Mic SVG -->
+          <svg class="mic-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 1a4 4 0 0 1 4 4v7a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4zm-1 17.93V21h2v-2.07A8.001 8.001 0 0 0 20 11h-2a6 6 0 0 1-12 0H4a8.001 8.001 0 0 0 7 7.93z"/>
+          </svg>
+          <!-- Stop SVG -->
+          <svg class="stop-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="14" height="14" rx="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <div id="rec-timer" aria-live="polite">00:00</div>
+      <div class="rec-label" id="rec-label">Click the mic to start recording</div>
+
+      <!-- Live waveform -->
+      <canvas id="waveform" width="560" height="64" aria-hidden="true"></canvas>
+
+      <!-- Text-input fallback -->
+      <div class="input-group">
+        <input
+          type="text"
+          id="text-input"
+          placeholder="Or type your query here…"
+          aria-label="Text query input"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="btn-send" aria-label="Send text query">Analyze →</button>
+      </div>
+
+      <!-- Processing spinner -->
+      <div class="spinner-wrap" id="spinner">
+        <div class="spinner"></div>
+        <span id="spinner-label">Processing…</span>
+      </div>
+    </section>
+
+
+    <!-- ── Results grid ── -->
+    <div class="results-grid">
+
+      <!-- Transcription -->
+      <div class="card" aria-label="Transcription result">
+        <div class="card-title"><span class="dot"></span>Transcription</div>
+        <p class="transcription-text empty" id="transcription-text">
+          Your speech will appear here…
+        </p>
+      </div>
+
+      <!-- Intent & Confidence -->
+      <div class="card" aria-label="Intent classification result">
+        <div class="card-title"><span class="dot"></span>Intent Detected</div>
+        <div class="intent-display">
+          <span class="intent-badge hidden" id="intent-badge">
+            <span class="intent-icon">🎯</span>
+            <span id="intent-label">–</span>
+          </span>
+
+          <div class="confidence-bar-wrap" id="conf-wrap">
+            <div class="confidence-label">
+              <span>Confidence</span>
+              <span id="conf-pct">–</span>
+            </div>
+            <div class="confidence-track">
+              <div class="confidence-fill" id="conf-fill"></div>
+            </div>
+          </div>
+
+          <p class="transcription-text empty" id="intent-placeholder">
+            Intent will appear here after analysis…
+          </p>
+        </div>
+      </div>
+
+      <!-- AI Response -->
+      <div class="card" aria-label="AI response text" style="grid-column: 1 / -1;">
+        <div class="card-title"><span class="dot"></span>AI Response</div>
+        <p class="response-text empty" id="response-text">
+          The AI response will appear here…
+        </p>
+      </div>
+
+    </div><!-- /results-grid -->
+
+
+    <!-- ── Audio Player ── -->
+    <div class="card audio-section">
+      <div class="card-title"><span class="dot"></span>Audio Playback</div>
+      <div class="audio-player-wrap" id="audio-wrap">
+        <p class="audio-label">🔊 &nbsp;AI voice response ready — press play</p>
+        <audio id="response-audio" controls aria-label="AI voice response audio"></audio>
+      </div>
+      <p class="transcription-text empty" id="audio-placeholder">
+        Audio response will appear here after processing…
+      </p>
+    </div>
+
+  </main>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span>© 2026 AI VoiceBot &mdash; ASR · NLP · TTS Pipeline</span>
+    <nav class="footer-links" aria-label="Footer links">
+      <a href="/docs" target="_blank" rel="noopener">API Docs</a>
+      <a href="/health" target="_blank" rel="noopener">Health</a>
+    </nav>
+  </footer>
+
+</div><!-- /shell -->
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

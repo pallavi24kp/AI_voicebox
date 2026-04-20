@@ -1,216 +1,165 @@
-### AI VoiceBot – End-to-End Audio Conversational System
+# 🎙️ AI VoiceBot — End-to-End Intelligent Voice Assistant
 
-An end-to-end AI VoiceBot system that converts audio → text → intent → response → audio, optimized for low latency and modular architecture.
+An end-to-end AI VoiceBot with a **professional web frontend**, powered by Whisper ASR, DistilBERT intent classification, and gTTS speech synthesis. The full pipeline converts audio → text → intent → response → audio in under 3–5 seconds.
 
+---
 
-### Overview
+## ✨ Features
 
-This project implements a modular AI VoiceBot system with the following pipeline:
+- 🎙️ **Live microphone recording** with animated waveform visualizer
+- 🧠 **Automatic Speech Recognition** using `faster-whisper` (Whisper small)
+- 🎯 **Intent Classification** using a fine-tuned DistilBERT model
+- 💬 **Contextual Response Generation** from a centralized template engine
+- 🔊 **Text-to-Speech** output using gTTS, played back in the browser
+- ⌨️ **Text input mode** as a fallback — type a query without a mic
+- 📊 **Pipeline step visualizer** (ASR → NLP → Response → TTS)
+- 🌐 **Self-hosted frontend** served directly by FastAPI
 
-User Audio → ASR → Intent Classification → Response Generation → TTS → Audio Output
+---
 
-The system supports:
+## 🗂️ Project Structure
 
-Individual modular endpoints
+```
+AI_voicebot/
+├── app/
+│   ├── asr/
+│   │   └── transcriber.py          # Whisper ASR
+│   ├── nlp/
+│   │   └── intent_predictor.py     # DistilBERT intent classification
+│   ├── responses/
+│   │   ├── response_generator.py   # Response dispatcher
+│   │   └── response_templates.py   # Centralized response templates
+│   └── tts/
+│       └── synthesizer.py          # gTTS text-to-speech
+├── data/                           # Runtime-generated audio files (gitignored)
+├── evaluation/
+│   └── confusion_matrix.png        # Model evaluation output
+├── frontend/
+│   ├── index.html                  # SPA shell
+│   ├── style.css                   # Premium dark-mode UI
+│   └── app.js                      # Recording, API calls, UI logic
+├── models/                         # Trained DistilBERT model + label mapping
+├── scripts/
+│   ├── generate_dataset.py         # One-time dataset generator
+│   └── train_intent_model.py       # One-time model trainer
+├── main.py                         # FastAPI app entry point
+├── requirements.txt
+└── .gitignore
+```
 
-A unified /voicebot endpoint (audio → audio)
+---
 
-Optimized inference (< 3–5 seconds latency)
+## 🚀 Setup & Run
 
-Proper memory handling
-
-Clean architecture without scattered hard-coded responses
-
-
-### Architecture Diagram
-
-![alt text](image-2.png)
-
-
-### Module Breakdown
-
-| Module          | Description                      |
-| --------------- | -------------------------------- |
-| ASR             | Converts speech to text          |
-| NLP             | Predicts user intent             |
-| Response Engine | Generates contextual response    |
-| TTS             | Converts response text to speech |
-| Config          | Stores settings and model paths  |
-| Models          | Contains trained intent model    |
-
-
-### Project Structure
-
-![alt text](image-3.png)
-
-### API Endpoints
-
-### 1️ Transcribe
-POST /transcribe
-
-Input: Audio file
-Output: Transcribed text
-
-### 2️ Predict Intent
-POST /predict-intent
-
-Input: Text
-Output:
-
-{
-  "intent": "greeting",
-  "confidence": 0.94
-}
-
-### 3️ Generate Response
-POST /generate-response
-
-Input: Intent + Text
-Output: Response text
-
-### 4️ Synthesize
-POST /synthesize
-
-Input: Text
-Output: Audio file
-
-### 5️ Unified VoiceBot Endpoint (Preferred)
-POST /voicebot
-
-Input: Audio
-Output: Audio Response
-
-This endpoint handles the complete pipeline internally.
-
- ### Model Choices & Justification
-
-###  ASR Model
-
-Lightweight speech-to-text model
-
-Optimized for low latency
-
-Suitable for local inference
-
-### Intent Classification
-
-Trained ML model (e.g., Logistic Regression / Neural Network)
-
-Fast inference
-
-Stored in /models/intent_model/
-
-Evaluated using accuracy & confusion matrix
-
-### Response Generation
-
-Template-based structured responses
-
-Centralized response mapping (no scattered hardcoding)
-
-### TTS
-
-Lightweight speech synthesis
-
-Optimized for fast audio output generation
-
-### Setup Instructions
-
-### 1️ Clone Repository
-git clone <repo_link>
+### 1. Clone the repository
+```bash
+git clone <repo_url>
 cd AI_voicebot
+```
 
-### 2️ Create Virtual Environment
+### 2. Create a virtual environment
+```bash
 python -m venv venv
-source venv/bin/activate   # Linux/Mac
-venv\Scripts\activate      # Windows
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+source venv/bin/activate
+```
 
-### 3️ Install Dependencies
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-### 4️ Run Application
-python main.py
+### 4. Run the server
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
-### Server runs at:
+### 5. Open the frontend
+Navigate to **http://localhost:8000** in your browser.
 
-http://localhost:8000/docs
+> The FastAPI server serves both the REST API and the web frontend from the same process — no separate frontend server needed.
 
+---
 
-### Evaluation Metrics
+## 🔌 API Endpoints
 
-### Intent Classification
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/health` | Health check |
+| `POST` | `/voicebot` | **Full pipeline** — audio file → JSON (transcription + intent + response + audio URL) |
+| `POST` | `/transcribe` | Audio file → transcribed text |
+| `POST` | `/predict-intent` | Text → `{ intent, confidence }` |
+| `POST` | `/generate-response` | Intent + text → response text |
+| `POST` | `/synthesize` | Text → MP3 audio file |
+| `GET`  | `/data/{filename}` | Serve generated audio files |
+| `GET`  | `/docs` | Interactive Swagger UI |
 
-Accuracy
+---
 
-Precision
+## 🎯 Supported Intents
 
-Recall
+| Intent | Example |
+|--------|---------|
+| `order_status` | "Where is my order?" |
+| `cancel_order` | "I want to cancel my order" |
+| `refund_request` | "I need a refund" |
+| `payment_problem` | "My card was declined" |
+| `delivery_delay` | "My delivery is delayed" |
+| `account_update` | "Update my email address" |
+| `complaint` | "I want to file a complaint" |
+| `product_info` | "Tell me about this product" |
+| `technical_support` | "App is not working" |
+| `subscription_issue` | "Cancel my subscription" |
 
-F1 Score
+---
 
-Confusion Matrix (available in /evaluation/)
+## 🏗️ Pipeline Architecture
 
-### Performance
+```
+User Audio
+    │
+    ▼
+┌─────────────────┐
+│   ASR (Whisper) │  → transcribed text
+└─────────────────┘
+    │
+    ▼
+┌──────────────────────┐
+│  NLP (DistilBERT)    │  → intent + confidence
+└──────────────────────┘
+    │
+    ▼
+┌────────────────────────┐
+│  Response Engine       │  → response text
+│  (Template-based)      │
+└────────────────────────┘
+    │
+    ▼
+┌─────────────────┐
+│   TTS (gTTS)    │  → MP3 audio file
+└─────────────────┘
+    │
+    ▼
+Browser Audio Playback
+```
 
-End-to-End Latency: Under 3–5 seconds
+---
 
-Optimized inference
+## 📊 Model Evaluation
 
-Efficient memory usage
+Intent classifier evaluated on held-out test data:
 
-### API Usage Examples
+- **Accuracy**, **Precision**, **Recall**, **F1 Score**
+- Confusion matrix available at `evaluation/confusion_matrix.png`
 
-### Using curl (Unified Endpoint)
+---
 
-curl -X POST "http://localhost:8000/voicebot" \
--F "file=@sample_audio.wav" \
---output response.wav
+## 🔮 Future Improvements
 
-### Sample Test Audio Files
-
-Included in submission:
-
-greeting.wav
-
-query.wav
-
-fallback.wav
-
-### Demo
-
-![alt text](<Screenshot 2026-03-01 114535.png>)
-
-![alt text](<Screenshot 2026-03-01 120605.png>)
-
-![alt text](<Screenshot 2026-03-01 120612.png>)
-
-![alt text](<Screenshot 2026-03-01 120622.png>)
-
-<audio controls src="voicebot_response.mp3" title="Title"></audio>
-
-
-###  Design Principles Followed
-
- Modular architecture
-
- No scattered hard-coded responses
-
- Centralized configuration
-
- Optimized inference
-
- Clean readable code
-
- Proper memory management
-
-### Future Improvements
-
-Multi-language support
-
-Streaming audio support
-
-Transformer-based intent detection
-
-Deployment using Docker
-
-Cloud API hosting
+- Streaming audio support (WebSocket)
+- Multi-language ASR and TTS
+- Generative response engine (LLM-based)
+- Docker containerization
+- Cloud deployment (GCP / AWS)
